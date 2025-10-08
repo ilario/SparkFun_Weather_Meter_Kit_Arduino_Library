@@ -40,8 +40,10 @@ SFEWeatherMeterKit::SFEWeatherMeterKit(uint8_t windDirectionPin, uint8_t windSpe
     _calibrationParams.vaneADCValues[WMK_ANGLE_315_0] = SFE_WMK_ADC_ANGLE_315_0;
     _calibrationParams.vaneADCValues[WMK_ANGLE_337_5] = SFE_WMK_ADC_ANGLE_337_5;
 
-    // Datasheet specifies 2.4kph of wind causes one trigger per second
-    _calibrationParams.kphPerCountPerSec = 2.4;
+    // The English text of the datasheet specifies that 2.4 km/h of wind causes
+    // one trigger per second BUT the Chinese text of the datasheet, a value of
+    // 0.33 m/s (corresponding to 1.188 km/h) is reported instead.
+    _calibrationParams.kphPerCountPerSec = 1.188;
 
     // Wind speed sampling interval. Longer durations have more accuracy, but
     // cause delay and can miss fast fluctuations
